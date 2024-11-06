@@ -1,0 +1,20 @@
+Capstone 2 Ecommerce API Overview 
+
+Application Name: Ecommerce API 
+Developer: Joanne Gayaso
+
+User Credentials: 
+Admin User: 
+*email: john@mail.com
+*password: john12345
+
+Dummy Customer: 
+*email: jane@mail.com
+* password: jane1234
+
+Features: 
+User Resources:
+*User registration 
+*User authentication 
+*Set user as admin(Admin only)
+*Retrieve user details
