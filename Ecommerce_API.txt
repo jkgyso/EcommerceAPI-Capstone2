@@ -10,11 +10,21 @@ Admin User:
 
 Dummy Customer: 
 *email: jane@mail.com
-* password: jane1234
+*password: jane1234
 
 Features: 
+
 User Resources:
 *User registration 
 *User authentication 
 *Set user as admin(Admin only)
 *Retrieve user details
+
+Product Resources: 
+*Create Product(Admin only)
+*Retrieve all products(Admin only)
+*Retrieve all active products
+*Retreive a single product 
+*Update Product information(Admin only)
+*Archive Product(Admin only)
+*Activate Product(Admin only)

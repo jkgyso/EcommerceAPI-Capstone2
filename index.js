@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const userRoutes = require("./routes/user");
-// const productRoutes = require('./routes/product');
+const productRoutes = require("./routes/product");
 // const cartRoutes = require('./routes/cart');
 
 const app = express();
@@ -24,7 +24,7 @@ db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => console.log(`We're connected to MongoDB Atlas`));
 
 app.use("/users", userRoutes);
-// app.use('/products', productRoutes);
+app.use("/products", productRoutes);
 // app.use('/cart', cartRoutes);
 
 if (require.main === module) {
