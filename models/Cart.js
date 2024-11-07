@@ -23,7 +23,7 @@ const cartSchema = new mongoose.Schema({
   ],
   totalPrice: {
     type: Number,
-    required: [true, "Total Price is required"],
+    default: 0,
   },
   orderedOn: {
     type: Date,

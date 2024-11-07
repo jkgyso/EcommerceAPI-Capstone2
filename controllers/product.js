@@ -97,7 +97,7 @@ module.exports.getProduct = async (req, res) => {
 
 // Update Product info
 module.exports.updateProductInfo = async (req, res) => {
-  const productId = req.params.productId;
+  const { productId } = req.params;
   const { name, description, price } = req.body;
 
   if (!name || !description || !price) {
