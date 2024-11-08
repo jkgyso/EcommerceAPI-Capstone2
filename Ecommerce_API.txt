@@ -28,3 +28,12 @@ Product Resources:
 *Update Product information(Admin only)
 *Archive Product(Admin only)
 *Activate Product(Admin only)
+
+Cart Resources: 
+*Get User's Cart
+*Add to Cart
+*Subtotal for each item 
+*Total price for all items 
+*Change product quantities 
+*Remove products from cart 
+*Clear Cart
