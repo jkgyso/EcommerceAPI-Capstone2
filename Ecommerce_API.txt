@@ -28,6 +28,8 @@ Product Resources:
 *Update Product information(Admin only)
 *Archive Product(Admin only)
 *Activate Product(Admin only)
+*Search Product By Name
+*Search Product By Price
 
 Cart Resources: 
 *Get User's Cart
@@ -37,3 +39,8 @@ Cart Resources:
 *Change product quantities 
 *Remove products from cart 
 *Clear Cart
+
+Order Resources: 
+*Non-admin User checkout(Create Order)
+*Retrieve authenticated user's orders 
+*Retrieve all orders(Admin only)

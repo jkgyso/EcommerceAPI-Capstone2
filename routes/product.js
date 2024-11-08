@@ -25,5 +25,7 @@ router.patch(
   verifyAdmin,
   productController.activateProduct
 );
+router.post("/search-by-name", productController.searchByName);
+router.post("/search-by-price", productController.searchByPrice);
 
 module.exports = router;

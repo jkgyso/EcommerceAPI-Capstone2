@@ -6,6 +6,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
+const orderRoutes = require("./routes/order");
 
 const app = express();
 const port = 4000;
@@ -26,6 +27,7 @@ db.once("open", () => console.log(`We're connected to MongoDB Atlas`));
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
+app.use("/orders", orderRoutes);
 
 if (require.main === module) {
   app.listen(process.env.PORT || port, () =>

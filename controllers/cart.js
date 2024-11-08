@@ -1,6 +1,4 @@
 const Cart = require("../models/Cart");
-const User = require("../models/User");
-const auth = require("../auth");
 
 // Retrieve user's cart
 module.exports.getCart = async (req, res) => {

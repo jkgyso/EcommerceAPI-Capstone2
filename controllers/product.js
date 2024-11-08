@@ -1,6 +1,4 @@
 const Product = require("../models/Product");
-const bcrypt = require("bcryptjs");
-const auth = require("../auth");
 
 // Create Product
 module.exports.createProduct = async (req, res) => {
@@ -207,5 +205,51 @@ module.exports.activateProduct = async (req, res) => {
     return res
       .status(500)
       .send({ error: "Failed to active the product", details: error.message });
+  }
+};
+
+// Search for products by name
+module.exports.searchByName = async (req, res) => {
+  const { name } = req.body;
+
+  try {
+    let product = await Product.find({ name: { $regex: name, $options: "i" } });
+
+    if (product.length === 0) {
+      return res.status(404).send({ error: "No results found" });
+    }
+
+    return res.status(200).send(product);
+  } catch (error) {
+    console.error("Error finding the product", error);
+    return res
+      .status(500)
+      .send({ error: "Failed fetching product", details: error.message });
+  }
+};
+
+// Search for products by price
+module.exports.searchByPrice = async (req, res) => {
+  const { minPrice, maxPrice } = req.body;
+
+  if (minPrice > maxPrice) {
+    return res.status(400).send({ error: "Invalid Price range" });
+  }
+
+  try {
+    let product = await Product.find({
+      price: { $gte: minPrice, $lte: maxPrice },
+    });
+
+    if (product.length === 0) {
+      return res.status(404).send({ error: "No results found" });
+    }
+
+    return res.status(200).send({ product });
+  } catch (error) {
+    console.error("Error finding products", error);
+    return res
+      .status(500)
+      .send({ error: "Failed fetching products", details: error.message });
   }
 };
