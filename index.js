@@ -1,5 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+// const passport = require("passport");
+// const session = require("express-session");
+// require("./passport");
 
 const cors = require("cors");
 
@@ -14,6 +17,16 @@ const port = 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+// app.use(
+//   session({
+//     secret: process.env.clientSecret,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 mongoose.connect(
   "mongodb+srv://admin:admin1234@gysodb.nijqxz1.mongodb.net/Ecommerce-API-Capstone?retryWrites=true&w=majority&appName=gysoDB"
