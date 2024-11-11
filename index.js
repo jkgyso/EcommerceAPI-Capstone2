@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -9,15 +10,16 @@ const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://admin:admin1234@gysodb.nijqxz1.mongodb.net/Ecommerce-API-Capstone?retryWrites=true&w=majority&appName=gysoDB"
-);
+mongoose.connect(process.env.CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 let db = mongoose.connection;
 
