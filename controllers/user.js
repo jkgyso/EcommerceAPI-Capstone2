@@ -1,5 +1,6 @@
 const User = require("../models/User");
 
+const nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 const auth = require("../auth");
 
@@ -37,6 +38,30 @@ module.exports.registerUser = async (req, res) => {
     });
 
     await newUser.save();
+
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Registration Confirmation",
+      text: `Hello ${firstName}, \n\nThank you for registering! We're excited to have you on board!`,
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error("Error sending email:", err);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+
     return res.status(201).send({ message: "Registered successfully" });
   } catch (error) {
     console.error("Error in registering the user", error);
@@ -163,6 +188,31 @@ module.exports.updatePassword = async (req, res) => {
   try {
     await User.findByIdAndUpdate(id, {
       password: hashedPassword,
+    });
+
+    const user = await User.findById(id);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "Password Reset successful",
+      text: `Hello ${user.firstName},\n\nYour password has been successfully updated.`,
+    };
+
+    await transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error("Error sending email: ", err);
+      } else {
+        console.log("Email sent:", info.response);
+      }
     });
 
     return res.status(200).send({ message: "Password reset successful" });
